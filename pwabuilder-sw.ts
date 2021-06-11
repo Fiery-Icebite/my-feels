@@ -1,19 +1,20 @@
-import { precacheAndRoute } from "workbox-precaching";
+// This is the service worker with the Cache-first network
 
-// Add custom service worker logic, such as a push notification serivce, or json request cache.
-self.addEventListener("message", (event: any) => {
+const CACHE = "pwabuilder-precache";
+
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+
+self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
-     self.skipWaiting();
+    self.skipWaiting();
   }
 });
 
-
-try {
-  //@ts-ignore
-  precacheAndRoute(self.__WB_MANIFEST);
-}
-catch (err) {
-  console.info("if you are in development mode this error is expected: ", err);
-}
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.CacheFirst({
+    cacheName: CACHE
+  })
+);
 
 
