@@ -1,6 +1,5 @@
 {
- {
-    "name": "In My Feelings Game",
+     "name": "In My Feelings Game",
     "short_name": "My Feelings",
     "description": "The game that makes a difference",
     "start_url": "/?utm_source=pwa&utm_medium=pwa&utm_campaign=pwa&progressify=true",
